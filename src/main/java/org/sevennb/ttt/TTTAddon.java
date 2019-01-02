@@ -2,13 +2,15 @@ package org.sevennb.ttt;
 
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.events.MessageReceiveEvent;
+import net.labymod.api.events.MessageSendEvent;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.SettingsElement;
 import net.labymod.utils.Consumer;
 import net.labymod.utils.Material;
 import net.labymod.utils.ServerData;
-import org.lwjgl.Sys;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.server.MinecraftServer;
 import org.sevennb.ttt.utils.ListUtils;
 import org.sevennb.ttt.utils.MessageUtils;
 import org.sevennb.ttt.utils.TextColor;
@@ -28,14 +30,46 @@ public class TTTAddon extends LabyModAddon {
             public boolean onReceive(String s, String message) {
                 if((message != null) || (message != "")){
                     try {
-                        MessageUtils.test(message);
-                    }catch (Exception e){}
+                        MessageUtils.execute(message);
+                    }catch (Exception e){System.out.println(TextColor.ANSI_RED+e+TextColor.ANSI_RESET);}
+                }else{
+                    System.out.println("Message ist null!");
+                }
+                return false;
+            }
+        });
+
+        this.getApi().getEventManager().register(new MessageSendEvent() {
+            @Override
+            public boolean onSend(String message) {
+                if((message != null) || (message != "")){
                     try {
-                        MessageUtils.start(message);
-                    }catch (Exception e){}
-                    try {
-                        MessageUtils.command(message);
-                    }catch (Exception e){}
+                        if (TTTAddon.STATUS) {
+                            if (message.equalsIgnoreCase("-start")) {
+                                for(EntityPlayerMP entityPlayerMP : MinecraftServer.getServer().getConfigurationManager().getPlayerList()){
+                                    String name = entityPlayerMP.getName();
+                                    System.out.println("Registriert: "+name);
+                                    TTTAddon.testlevel.put(name, 0);
+                                    ListUtils.tests.add(name);
+                                }
+                                return true;
+                            }
+                            if (message.equalsIgnoreCase("-stop")) {
+                                TTTAddon.testlevel.clear();
+                                ListUtils.tests.clear();
+                                System.out.println("Liste geleert!");
+                                return true;
+                            }
+                            if (message.equalsIgnoreCase("-list")) {
+                                System.out.println(ListUtils.getListAsString());
+                                return true;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }catch (Exception e){System.out.println(TextColor.ANSI_RED+e+TextColor.ANSI_RESET);}
+                }else{
+                    System.out.println("Message ist null!");
                 }
                 return false;
             }
