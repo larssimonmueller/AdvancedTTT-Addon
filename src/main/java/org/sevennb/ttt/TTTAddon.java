@@ -7,45 +7,46 @@ import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.SettingsElement;
 import net.labymod.utils.Consumer;
 import net.labymod.utils.Material;
+import net.labymod.utils.ServerData;
+import org.lwjgl.Sys;
+import org.sevennb.ttt.utils.ListUtils;
+import org.sevennb.ttt.utils.MessageUtils;
 import org.sevennb.ttt.utils.TextColor;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class TTTAddon extends LabyModAddon {
 
     public static boolean STATUS = true;
-    public static List<String> tests = new ArrayList<String>();
+    public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
 
     @Override
     public void onEnable() {
         this.getApi().getEventManager().register(new MessageReceiveEvent() {
             @Override
             public boolean onReceive(String s, String message) {
-                if(STATUS){
-                    String[] args = message.split(" ");
-                    String detectMessage = "";
-                    if(args.length != 6){
-                        return false;
-                    }
-                    for(int i = 2; i < 6; i++){
-                        if(args[i].equals(null)){
-                            return false;
-                        }else{
-                            detectMessage = detectMessage+args[i]+" ";
-                        }
-                    }
-                    System.out.println(detectMessage);
-                    if(detectMessage.equalsIgnoreCase("hat den Traitor-Tester betreten ")){
-                        String playername = args[1];
-                        System.out.println("Spieler im Tester: "+playername);
-                        if(!tests.contains(playername)){
-                            tests.add(playername);
-                        }
-                    }
-                    return false;
+                if((message != null) || (message != "")){
+                    try {
+                        MessageUtils.test(message);
+                    }catch (Exception e){}
+                    try {
+                        MessageUtils.start(message);
+                    }catch (Exception e){}
+                    try {
+                        MessageUtils.command(message);
+                    }catch (Exception e){}
                 }
                 return false;
+            }
+        });
+
+        this.getApi().getEventManager().registerOnJoin(new Consumer<ServerData>(){
+
+            @Override
+            public void accept(ServerData serverData) {
+                testlevel.clear();
+                System.out.println(TextColor.ANSI_RED+"Leere die Liste!"+TextColor.ANSI_RESET);
             }
         });
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
