@@ -23,12 +23,28 @@ public class MessageUtils {
                 if(detectMessage.equalsIgnoreCase("hat den Traitor-Tester betreten ")) {
                     String playername = args[1];
                     System.out.println(TextColor.ANSI_RED + "Spieler im Tester: " + playername + TextColor.ANSI_RESET);
-
-                    int lvl = TTTAddon.testlevel.get(playername);
+                    int lvl;
+                    try {
+                        lvl = TTTAddon.testlevel.get(playername);
+                    }catch (NullPointerException e){
+                        lvl = 0;
+                    }
                     TTTAddon.testlevel.remove(playername);
                     TTTAddon.testlevel.put(playername, lvl + 1);
+                    if(!ListUtils.tests.contains(playername)){
+                        ListUtils.tests.add(playername);
+                    }
                 }
             }
             return false;
+    }
+
+    public static boolean command(String message){
+        if(message.startsWith("-clear")){
+            TTTAddon.testlevel.clear();
+            ListUtils.tests.clear();
+            return true;
+        }
+        return false;
     }
 }

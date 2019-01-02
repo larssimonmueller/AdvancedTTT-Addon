@@ -9,9 +9,8 @@ import net.labymod.settings.elements.SettingsElement;
 import net.labymod.utils.Consumer;
 import net.labymod.utils.Material;
 import net.labymod.utils.ServerData;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.MinecraftServer;
-import org.sevennb.ttt.utils.ListUtils;
+import org.sevennb.ttt.modules.ListModule;
+import org.sevennb.ttt.modules.SecondModule;
 import org.sevennb.ttt.utils.MessageUtils;
 import org.sevennb.ttt.utils.TextColor;
 
@@ -42,36 +41,14 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().getEventManager().register(new MessageSendEvent() {
             @Override
             public boolean onSend(String message) {
-                if((message != null) || (message != "")){
-                    try {
                         if (TTTAddon.STATUS) {
-                            if (message.equalsIgnoreCase("-start")) {
-                                for(EntityPlayerMP entityPlayerMP : MinecraftServer.getServer().getConfigurationManager().getPlayerList()){
-                                    String name = entityPlayerMP.getName();
-                                    System.out.println("Registriert: "+name);
-                                    TTTAddon.testlevel.put(name, 0);
-                                    ListUtils.tests.add(name);
-                                }
+                            if(MessageUtils.command(message)){
                                 return true;
+                            }else{
+                                return false;
                             }
-                            if (message.equalsIgnoreCase("-stop")) {
-                                TTTAddon.testlevel.clear();
-                                ListUtils.tests.clear();
-                                System.out.println("Liste geleert!");
-                                return true;
-                            }
-                            if (message.equalsIgnoreCase("-list")) {
-                                System.out.println(ListUtils.getListAsString());
-                                return true;
-                            }
-                            return false;
                         }
                         return false;
-                    }catch (Exception e){System.out.println(TextColor.ANSI_RED+e+TextColor.ANSI_RESET);}
-                }else{
-                    System.out.println("Message ist null!");
-                }
-                return false;
             }
         });
 
@@ -83,6 +60,9 @@ public class TTTAddon extends LabyModAddon {
                 System.out.println(TextColor.ANSI_RED+"Leere die Liste!"+TextColor.ANSI_RESET);
             }
         });
+
+        this.getApi().registerModule(new ListModule());
+        this.getApi().registerModule(new SecondModule());
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
     }
 

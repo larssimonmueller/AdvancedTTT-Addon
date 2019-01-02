@@ -1,4 +1,5 @@
 // For those who want the bleeding edge
+
 buildscript {
     repositories {
         jcenter()
@@ -84,4 +85,10 @@ reobf {
     jar {
         useNotchSrg()
     }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }

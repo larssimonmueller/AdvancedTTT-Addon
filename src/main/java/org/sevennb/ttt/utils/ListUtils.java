@@ -9,20 +9,30 @@ public class ListUtils {
 
     public static List<String> tests = new ArrayList<String>();
 
-    public static String getListAsString(){
+    public static String getListAsString(TestLevel testLevel){
         String output = "";
-        for(String out : tests){
-            String playername = out;
-            int lvl = TTTAddon.testlevel.get(playername);
-            if(lvl == 0){
-                output = output+TextColor.ANSI_RED+playername+TextColor.ANSI_RESET+"\n";
-            }else if(lvl == 1){
-                output = output+TextColor.ANSI_YELLOW+playername+TextColor.ANSI_RESET+"\n";
-            }else if(lvl >= 2){
-                output = output+TextColor.ANSI_RED+playername+TextColor.ANSI_GREEN+"\n";
+        if(testLevel == TestLevel.ONE){
+            for(String out : tests){
+                String playername = out;
+                int lvl = TTTAddon.testlevel.get(playername);
+                if(lvl == 0){
+                    output = output+"§c"+playername+"§f, ";
+                }else if(lvl == 1){
+                    output = output+"§a"+playername+"§f, ";
+                }
             }
+            return output;
+        }else if(testLevel == TestLevel.TWO){
+            for(String out : tests){
+                String playername = out;
+                int lvl = TTTAddon.testlevel.get(playername);
+                if(lvl >= 2){
+                    output = output+"§2"+playername+"§f, ";
+                }
+            }
+            return output;
         }
-        return output;
+        return "Keine";
     }
 
 }
