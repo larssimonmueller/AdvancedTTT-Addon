@@ -12,6 +12,12 @@ public class MessageUtils {
             String[] args = message.split(" ");
                 String detectMessage = "";
 
+                if(message.contains("Du wurdest von")){
+                    FalleModule.falle = false;
+                    TTTAddon.testlevel.clear();
+                    ListUtils.tests.clear();
+                    RolleModul.rolle = "";
+                }
 
                 if(message.contains("Du bist ein Innocent")){
                     RolleModul.rolle = "§aInnocent";
