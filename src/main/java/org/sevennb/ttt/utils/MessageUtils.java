@@ -1,6 +1,5 @@
 package org.sevennb.ttt.utils;
 
-import net.minecraft.client.Minecraft;
 import org.sevennb.ttt.TTTAddon;
 import org.sevennb.ttt.modules.FalleModule;
 import org.sevennb.ttt.modules.RolleModul;
