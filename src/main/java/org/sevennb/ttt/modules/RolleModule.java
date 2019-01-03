@@ -4,9 +4,9 @@ import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.utils.Material;
 
-public class RolleModul extends SimpleModule {
+public class RolleModule extends SimpleModule {
 
-    public static String rolle = "";
+    public static String rolle = "-";
 
     @Override
     public String getDisplayName() {

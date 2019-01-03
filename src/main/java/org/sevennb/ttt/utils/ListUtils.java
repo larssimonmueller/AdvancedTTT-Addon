@@ -21,6 +21,9 @@ public class ListUtils {
                     output = output+"§a"+playername+"§f, ";
                 }
             }
+            if (output == ""){
+                return "-";
+            }
             return output;
         }else if(testLevel == TestLevel.TWO){
             for(String out : tests){
@@ -29,6 +32,9 @@ public class ListUtils {
                 if(lvl >= 2){
                     output = output+"§2"+playername+"§f, ";
                 }
+            }
+            if (output == ""){
+                return "-";
             }
             return output;
         }

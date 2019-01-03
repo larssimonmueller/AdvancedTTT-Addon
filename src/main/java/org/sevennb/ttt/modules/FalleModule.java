@@ -10,15 +10,15 @@ public class FalleModule extends SimpleModule {
 
     @Override
     public String getDisplayName() {
-        return "Falle gedrückt";
+        return "Falle aktiviert";
     }
 
     @Override
     public String getDisplayValue() {
         if(falle == true){
-            return "Ja";
+            return "§4Ja";
         }else{
-            return "Nein";
+            return "§aNein";
         }
     }
 

@@ -11,8 +11,9 @@ import net.labymod.utils.Material;
 import net.labymod.utils.ServerData;
 import org.sevennb.ttt.modules.FalleModule;
 import org.sevennb.ttt.modules.ListModule;
-import org.sevennb.ttt.modules.RolleModul;
+import org.sevennb.ttt.modules.RolleModule;
 import org.sevennb.ttt.modules.SecondModule;
+import org.sevennb.ttt.utils.ListUtils;
 import org.sevennb.ttt.utils.MessageUtils;
 import org.sevennb.ttt.utils.TextColor;
 
@@ -23,6 +24,7 @@ public class TTTAddon extends LabyModAddon {
 
     public static boolean STATUS = true;
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
+    public static boolean DATA = true;
 
     @Override
     public void onEnable() {
@@ -63,6 +65,7 @@ public class TTTAddon extends LabyModAddon {
             @Override
             public void accept(ServerData serverData) {
                 testlevel.clear();
+                ListUtils.tests.clear();
                 System.out.println(TextColor.ANSI_RED+"Leere die Liste!"+TextColor.ANSI_RESET);
             }
         });
@@ -70,7 +73,7 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().registerModule(new ListModule());
         this.getApi().registerModule(new SecondModule());
         this.getApi().registerModule(new FalleModule());
-        this.getApi().registerModule(new RolleModul());
+        this.getApi().registerModule(new RolleModule());
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
     }
 
@@ -86,12 +89,20 @@ public class TTTAddon extends LabyModAddon {
 
     @Override
     protected void fillSettings(List<SettingsElement> subSettings) {
-        subSettings.add( new BooleanElement( "Tester-Detect" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
+        subSettings.add( new BooleanElement( "Aktiviert" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
             @Override
             public void accept( Boolean accepted ) {
                 STATUS = accepted;
                 System.out.println("Geänderte Eingabe: "+STATUS);
             }
         }, STATUS) );
+
+        subSettings.add( new BooleanElement( "Daten senden" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
+            @Override
+            public void accept( Boolean accepted ) {
+                DATA = accepted;
+                System.out.println("Geänderte Eingabe: "+DATA);
+            }
+        }, DATA) );
     }
 }

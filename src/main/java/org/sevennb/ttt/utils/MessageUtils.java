@@ -2,7 +2,8 @@ package org.sevennb.ttt.utils;
 
 import org.sevennb.ttt.TTTAddon;
 import org.sevennb.ttt.modules.FalleModule;
-import org.sevennb.ttt.modules.RolleModul;
+import org.sevennb.ttt.modules.RolleModule;
+import org.sevennb.ttt.utils.data.WebHandler;
 
 public class MessageUtils {
 
@@ -15,38 +16,41 @@ public class MessageUtils {
                     FalleModule.falle = false;
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
-                    RolleModul.rolle = "";
+                    RolleModule.rolle = "-";
                 }
 
                 if(message.contains("Das Spiel beginnt!")){
                     FalleModule.falle = false;
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
-                    RolleModul.rolle = "";
+                    RolleModule.rolle = "-";
                 }
 
                 if(message.contains("Du bist ein Innocent")){
-                    RolleModul.rolle = "§aInnocent";
+                    RolleModule.rolle = "§aInnocent";
+                    WebHandler.send("Innocent");
                 }
                 if(message.contains("Du bist ein Traitor")){
-                    RolleModul.rolle = "§4Traitor";
+                    RolleModule.rolle = "§4Traitor";
+                    WebHandler.send("Traitor");
                 }
                 if(message.contains("Du bist ein Detective")){
-                    RolleModul.rolle = "§9Detective";
+                    RolleModule.rolle = "§9Detective";
+                    WebHandler.send("Detective");
                 }
 
                 if(message.contains("Die Traitor haben alle Innocents eliminiert")){
                     FalleModule.falle = false;
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
-                    RolleModul.rolle = "";
+                    RolleModule.rolle = "-";
                 }
 
                 if(message.contains("Die Innocents haben den Anschlag der Terroristen überlebt")){
                     FalleModule.falle = false;
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
-                    RolleModul.rolle = "";
+                    RolleModule.rolle = "-";
                 }
 
                 if(args.length == 6){
@@ -84,7 +88,7 @@ public class MessageUtils {
             FalleModule.falle = false;
             TTTAddon.testlevel.clear();
             ListUtils.tests.clear();
-            RolleModul.rolle = "";
+            RolleModule.rolle = "-";
             return true;
         }
         return false;
