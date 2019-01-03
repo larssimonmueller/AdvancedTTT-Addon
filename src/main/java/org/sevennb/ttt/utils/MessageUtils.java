@@ -1,6 +1,7 @@
 package org.sevennb.ttt.utils;
 
 import org.sevennb.ttt.TTTAddon;
+import org.sevennb.ttt.modules.FalleModule;
 
 public class MessageUtils {
 
@@ -40,7 +41,8 @@ public class MessageUtils {
     }
 
     public static boolean command(String message){
-        if(message.startsWith("-clear")){
+        if(message.startsWith("-c")){
+            FalleModule.falle = false;
             TTTAddon.testlevel.clear();
             ListUtils.tests.clear();
             return true;

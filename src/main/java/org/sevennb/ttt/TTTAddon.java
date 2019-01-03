@@ -9,6 +9,7 @@ import net.labymod.settings.elements.SettingsElement;
 import net.labymod.utils.Consumer;
 import net.labymod.utils.Material;
 import net.labymod.utils.ServerData;
+import org.sevennb.ttt.modules.FalleModule;
 import org.sevennb.ttt.modules.ListModule;
 import org.sevennb.ttt.modules.SecondModule;
 import org.sevennb.ttt.utils.MessageUtils;
@@ -29,6 +30,10 @@ public class TTTAddon extends LabyModAddon {
             public boolean onReceive(String s, String message) {
                 if((message != null) || (message != "")){
                     try {
+                        if(message.contains("Die Traitor-Falle wurde ausgelöst")){
+                            FalleModule.falle = true;
+                            return false;
+                        }
                         MessageUtils.execute(message);
                     }catch (Exception e){System.out.println(TextColor.ANSI_RED+e+TextColor.ANSI_RESET);}
                 }else{
@@ -63,6 +68,7 @@ public class TTTAddon extends LabyModAddon {
 
         this.getApi().registerModule(new ListModule());
         this.getApi().registerModule(new SecondModule());
+        this.getApi().registerModule(new FalleModule());
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
     }
 
