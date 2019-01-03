@@ -19,6 +19,13 @@ public class MessageUtils {
                     RolleModul.rolle = "";
                 }
 
+                if(message.contains("Das Spiel beginnt!")){
+                    FalleModule.falle = false;
+                    TTTAddon.testlevel.clear();
+                    ListUtils.tests.clear();
+                    RolleModul.rolle = "";
+                }
+
                 if(message.contains("Du bist ein Innocent")){
                     RolleModul.rolle = "§aInnocent";
                 }
@@ -27,6 +34,20 @@ public class MessageUtils {
                 }
                 if(message.contains("Du bist ein Detective")){
                     RolleModul.rolle = "§9Detective";
+                }
+
+                if(message.contains("Die Traitor haben alle Innocents eliminiert")){
+                    FalleModule.falle = false;
+                    TTTAddon.testlevel.clear();
+                    ListUtils.tests.clear();
+                    RolleModul.rolle = "";
+                }
+
+                if(message.contains("Die Innocents haben den Anschlag der Terroristen überlebt")){
+                    FalleModule.falle = false;
+                    TTTAddon.testlevel.clear();
+                    ListUtils.tests.clear();
+                    RolleModul.rolle = "";
                 }
 
                 if(args.length == 6){
