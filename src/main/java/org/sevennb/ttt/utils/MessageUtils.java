@@ -1,7 +1,9 @@
 package org.sevennb.ttt.utils;
 
+import net.minecraft.client.Minecraft;
 import org.sevennb.ttt.TTTAddon;
 import org.sevennb.ttt.modules.FalleModule;
+import org.sevennb.ttt.modules.RolleModul;
 
 public class MessageUtils {
 
@@ -9,6 +11,17 @@ public class MessageUtils {
         if(TTTAddon.STATUS){
             String[] args = message.split(" ");
                 String detectMessage = "";
+
+
+                if(message.contains("Du bist ein Innocent")){
+                    RolleModul.rolle = "§aInnocent";
+                }
+                if(message.contains("Du bist ein Traitor")){
+                    RolleModul.rolle = "§4Traitor";
+                }
+                if(message.contains("Du bist ein Detective")){
+                    RolleModul.rolle = "§9Detective";
+                }
 
                 if(args.length == 6){
                     for(int i = 2; i < 6; i++){
@@ -45,6 +58,7 @@ public class MessageUtils {
             FalleModule.falle = false;
             TTTAddon.testlevel.clear();
             ListUtils.tests.clear();
+            RolleModul.rolle = "";
             return true;
         }
         return false;

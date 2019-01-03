@@ -11,6 +11,7 @@ import net.labymod.utils.Material;
 import net.labymod.utils.ServerData;
 import org.sevennb.ttt.modules.FalleModule;
 import org.sevennb.ttt.modules.ListModule;
+import org.sevennb.ttt.modules.RolleModul;
 import org.sevennb.ttt.modules.SecondModule;
 import org.sevennb.ttt.utils.MessageUtils;
 import org.sevennb.ttt.utils.TextColor;
@@ -69,6 +70,7 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().registerModule(new ListModule());
         this.getApi().registerModule(new SecondModule());
         this.getApi().registerModule(new FalleModule());
+        this.getApi().registerModule(new RolleModul());
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
     }
 

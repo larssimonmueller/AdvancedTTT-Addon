@@ -4,7 +4,7 @@
   "mainClass": "org.sevennb.ttt.TTTAddon",
   "author": "5TC",
   "description": "Zeige die Spieler die im Tester waren in TTT auf GommeHD.net",
-  "version": 1,
+  "version": 1.2,
   "category": 2,
   "icon": "https://7nb.org/ttt-mod-icon.png"
 }
