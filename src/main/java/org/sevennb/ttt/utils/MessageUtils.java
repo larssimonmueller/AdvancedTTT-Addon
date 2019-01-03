@@ -13,14 +13,14 @@ public class MessageUtils {
                 String detectMessage = "";
 
                 if(message.contains("Du wurdest von")){
-                    FalleModule.falle = false;
+                    FalleModule.falle = "§aNein";
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
                     RolleModule.rolle = "-";
                 }
 
                 if(message.contains("Das Spiel beginnt!")){
-                    FalleModule.falle = false;
+                    FalleModule.falle = "§aNein";
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
                     RolleModule.rolle = "-";
@@ -40,14 +40,14 @@ public class MessageUtils {
                 }
 
                 if(message.contains("Die Traitor haben alle Innocents eliminiert")){
-                    FalleModule.falle = false;
+                    FalleModule.falle = "-";
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
                     RolleModule.rolle = "-";
                 }
 
                 if(message.contains("Die Innocents haben den Anschlag der Terroristen überlebt")){
-                    FalleModule.falle = false;
+                    FalleModule.falle = "-";
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
                     RolleModule.rolle = "-";
@@ -85,7 +85,7 @@ public class MessageUtils {
 
     public static boolean command(String message){
         if(message.startsWith("-c")){
-            FalleModule.falle = false;
+            FalleModule.falle = "-";
             TTTAddon.testlevel.clear();
             ListUtils.tests.clear();
             RolleModule.rolle = "-";

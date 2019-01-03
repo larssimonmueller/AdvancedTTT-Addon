@@ -6,7 +6,7 @@ import net.labymod.utils.Material;
 
 public class FalleModule extends SimpleModule {
 
-    public static boolean falle = false;
+    public static String falle = "-";
 
     @Override
     public String getDisplayName() {
@@ -15,11 +15,7 @@ public class FalleModule extends SimpleModule {
 
     @Override
     public String getDisplayValue() {
-        if(falle == true){
-            return "§4Ja";
-        }else{
-            return "§aNein";
-        }
+        return falle;
     }
 
     @Override
