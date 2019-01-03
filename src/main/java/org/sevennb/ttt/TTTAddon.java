@@ -34,7 +34,7 @@ public class TTTAddon extends LabyModAddon {
                 if((message != null) || (message != "")){
                     try {
                         if(message.contains("Die Traitor-Falle wurde ausgelöst")){
-                            FalleModule.falle = "§4Ja";
+                            FalleModule.falle = "§4§lJa";
                             return false;
                         }
                         MessageUtils.execute(message);
