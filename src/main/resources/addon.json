@@ -1,6 +1,6 @@
 {
   "uuid": "%uuid%",
-  "name": "TTT-Addon",
+  "name": "AdvancedTTT",
   "mainClass": "org.sevennb.ttt.TTTAddon",
   "author": "5TC - 7nb Development",
   "description": "TTT Addon - GommeHD.net - Achtung: Verboten! Wir uebernehmen keine Haftung!",
