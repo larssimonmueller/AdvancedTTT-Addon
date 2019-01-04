@@ -18,3 +18,8 @@ Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Ha
 
 ## Download
 Klicke [hier](https://7nb.org/mod/releases) zum herunterladen.
+
+
+## Bugs
+
+- Sollte die GUI nicht zurückgesetzt werden, schreibe in den Chat "-c". Bei beginn jeder TTT Runde setzt sich die GUI automatisch zurück.
