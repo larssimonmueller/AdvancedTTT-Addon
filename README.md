@@ -7,7 +7,7 @@ Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Ha
 - LabyMod für die Version 1.8.9
 
 ## Installation
-1. Lade dir die Modifikation [hier](https://7nb.org/mod/releases) herunter.
+1. Lade dir die Modifikation [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) herunter.
 2. Nutze WIN + R und gebe %appdata% ein.
 3. Gehe in .minecraft > LabyMod > addons-1.8
 4. Ziehe die .jar Datei in den Ordner.
@@ -17,7 +17,7 @@ Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Ha
 8. Du bist fertig!
 
 ## Download
-Klicke [hier](https://7nb.org/mod/releases) zum herunterladen.
+Klicke [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) zum herunterladen.
 
 
 ## Bugs
