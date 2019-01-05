@@ -41,4 +41,21 @@ public class ListUtils {
         return "Keine";
     }
 
+    public static String getRole(String playername){
+        if(TTTAddon.NAMETAGS){
+            if(tests.contains(playername)){
+                int lvl = TTTAddon.testlevel.get(playername);
+                if(lvl == 1){
+                    return " §8- §eTester §a1x";
+                }else if(lvl == 2){
+                    return " §8- §eTester §22x";
+                }else{
+                    if(tests.size() != 0){
+                        return "§8- §eTester §c0x";
+                    }
+                }
+            }
+        }
+        return "";
+    }
 }

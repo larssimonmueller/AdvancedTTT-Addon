@@ -9,6 +9,7 @@ import net.labymod.settings.elements.SettingsElement;
 import net.labymod.utils.Consumer;
 import net.labymod.utils.Material;
 import net.labymod.utils.ServerData;
+import org.sevennb.ttt.events.NameTag;
 import org.sevennb.ttt.modules.FalleModule;
 import org.sevennb.ttt.modules.ListModule;
 import org.sevennb.ttt.modules.RolleModule;
@@ -25,6 +26,7 @@ public class TTTAddon extends LabyModAddon {
     public static boolean STATUS = true;
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
     public static boolean DATA = true;
+    public static boolean NAMETAGS = true;
 
     @Override
     public void onEnable() {
@@ -74,6 +76,7 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().registerModule(new SecondModule());
         this.getApi().registerModule(new FalleModule());
         this.getApi().registerModule(new RolleModule());
+        this.getApi().registerForgeListener(new NameTag());
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
     }
 
@@ -96,6 +99,14 @@ public class TTTAddon extends LabyModAddon {
                 System.out.println("Geänderte Eingabe: "+STATUS);
             }
         }, STATUS) );
+
+        subSettings.add( new BooleanElement( "NameTags" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
+            @Override
+            public void accept( Boolean accepted ) {
+                NAMETAGS = accepted;
+                System.out.println("Geänderte Eingabe: "+NAMETAGS);
+            }
+        }, DATA) );
 
         subSettings.add( new BooleanElement( "Daten senden" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
             @Override
