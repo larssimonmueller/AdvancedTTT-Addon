@@ -100,6 +100,14 @@ public class TTTAddon extends LabyModAddon {
             }
         }, STATUS) );
 
+        subSettings.add( new BooleanElement( "NameTags" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
+            @Override
+            public void accept( Boolean accepted ) {
+                NAMETAGS = accepted;
+                System.out.println("Geänderte Eingabe: "+NAMETAGS);
+            }
+        }, NAMETAGS) );
+
         subSettings.add( new BooleanElement( "Daten senden" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
             @Override
             public void accept( Boolean accepted ) {

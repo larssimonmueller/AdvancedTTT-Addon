@@ -4,7 +4,7 @@ Entwickelt von 5TC. Ein Projekt von [7nb Development](https://7nb.org).
 Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Haftung.
 
 ## Vorraussetzungen
-- LabyMod für die Version 1.8.9
+- LabyMod für **Forge** (für die Minecraftversion 1.8.9)
 
 ## Installation
 1. Lade dir die Modifikation [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) herunter.
