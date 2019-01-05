@@ -16,6 +16,11 @@ Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Ha
 7. Aktiviere **alles** was mit module_ anfängt.
 8. Du bist fertig!
 
+## Statistiken
+Die Modifikation sammelt Daten und sendet diese an unseren Server zur Errechnung der Wahrscheinlichkeit der verschiedenen Rollen.
+Deine Statistiken kannst du [hier](https://7nb.org/mod) einsehen.
+Du kannst diese Funktion in den Addon-Einstellungen deaktivieren.
+
 ## Download
 Klicke [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) zum herunterladen.
 
