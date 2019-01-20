@@ -23,10 +23,10 @@ import java.util.List;
 
 public class TTTAddon extends LabyModAddon {
 
-    public static boolean STATUS = true;
+    public static boolean STATUS;
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
-    public static boolean DATA = true;
-    public static boolean NAMETAGS = true;
+    public static boolean DATA;
+    public static boolean NAMETAGS;
 
     @Override
     public void onEnable() {
@@ -87,33 +87,15 @@ public class TTTAddon extends LabyModAddon {
 
     @Override
     public void loadConfig() {
-
+        this.STATUS = getConfig().has( "active" ) ? getConfig().get( "active" ).getAsBoolean() : true;
+        this.NAMETAGS = getConfig().has( "nametags" ) ? getConfig().get( "nametags" ).getAsBoolean() : true;
+        this.DATA = getConfig().has( "onlinestats" ) ? getConfig().get( "onlinestats" ).getAsBoolean() : true;
     }
 
     @Override
     protected void fillSettings(List<SettingsElement> subSettings) {
-        subSettings.add( new BooleanElement( "Aktiviert" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
-            @Override
-            public void accept( Boolean accepted ) {
-                STATUS = accepted;
-                System.out.println("Geänderte Eingabe: "+STATUS);
-            }
-        }, STATUS) );
-
-        subSettings.add( new BooleanElement( "NameTags" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
-            @Override
-            public void accept( Boolean accepted ) {
-                NAMETAGS = accepted;
-                System.out.println("Geänderte Eingabe: "+NAMETAGS);
-            }
-        }, NAMETAGS) );
-
-        subSettings.add( new BooleanElement( "Daten senden" /* Display name */, new ControlElement.IconData( Material.LEVER ), new Consumer<Boolean>() {
-            @Override
-            public void accept( Boolean accepted ) {
-                DATA = accepted;
-                System.out.println("Geänderte Eingabe: "+DATA);
-            }
-        }, DATA) );
+        subSettings.add( new BooleanElement( "Aktiv", this, new ControlElement.IconData( Material.LEVER ), "active", this.STATUS ) );
+        subSettings.add( new BooleanElement( "NameTags", this, new ControlElement.IconData( Material.LEVER ), "nametags", this.NAMETAGS ) );
+        subSettings.add( new BooleanElement( "Online Stats", this, new ControlElement.IconData( Material.LEVER ), "onlinestats", this.DATA ) );
     }
 }
