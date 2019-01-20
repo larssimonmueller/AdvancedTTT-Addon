@@ -13,10 +13,12 @@ public class MessageUtils {
                 String detectMessage = "";
 
                 if(message.contains("Du wurdest von")){
-                    FalleModule.falle = "-";
-                    TTTAddon.testlevel.clear();
-                    ListUtils.tests.clear();
-                    RolleModule.rolle = "-";
+                    if(message.contains("getötet")){
+                        FalleModule.falle = "-";
+                        TTTAddon.testlevel.clear();
+                        ListUtils.tests.clear();
+                        RolleModule.rolle = "-";
+                    }
                 }
 
                 if(message.contains("Das Spiel beginnt!")){
