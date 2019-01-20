@@ -45,13 +45,11 @@ public class ListUtils {
         if(TTTAddon.NAMETAGS){
             if(tests.contains(playername)){
                 int lvl = TTTAddon.testlevel.get(playername);
-                if(lvl == 1){
-                    return " §8- §eTester §a1x";
-                }else if(lvl == 2){
-                    return " §8- §eTester §22x";
-                }else{
-                    if(tests.size() != 0){
-                        return "§8- §eTester §c0x";
+                if(tests.size() != 0){
+                    if(lvl == 1){
+                        return "§8- §eTester §a"+lvl;
+                    }else if(lvl > 1){
+                        return "§8- §eTester §2"+lvl;
                     }
                 }
             }
