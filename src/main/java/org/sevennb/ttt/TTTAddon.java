@@ -48,7 +48,7 @@ public class TTTAddon extends LabyModAddon {
                 }else{
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §4Version: "+current+" §eKeine Updates verfügbar.");
                 }
-                LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDeine OnlineStats: §3ehttps://7nb.org/mod/stats.php?uuid="+LabyMod.getInstance().getPlayerUUID().toString());
+                LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDeine OnlineStats: §3https://7nb.org/mod/stats.php?uuid="+LabyMod.getInstance().getPlayerUUID().toString());
             }
         });
 
