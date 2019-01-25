@@ -3,6 +3,7 @@ package org.sevennb.ttt;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.events.MessageReceiveEvent;
 import net.labymod.api.events.MessageSendEvent;
+import net.labymod.main.LabyMod;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.SettingsElement;
@@ -17,6 +18,7 @@ import org.sevennb.ttt.modules.SecondModule;
 import org.sevennb.ttt.utils.ListUtils;
 import org.sevennb.ttt.utils.MessageUtils;
 import org.sevennb.ttt.utils.TextColor;
+import org.sevennb.ttt.utils.data.WebHandler;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +30,26 @@ public class TTTAddon extends LabyModAddon {
     public static boolean DATA;
     public static boolean NAMETAGS;
 
+    public static final double VERSION = 1.3;
+
     @Override
     public void onEnable() {
+
+        this.getApi().getEventManager().registerOnJoin(new Consumer<ServerData>() {
+            @Override
+            public void accept(ServerData serverData) {
+                double current = Double.parseDouble(WebHandler.read("https://7nb.org/mod/version.txt"));
+                String download = "https://7nb.org/mod/"+current;
+                if(VERSION != current){
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT §7> §eEs ist eine §4neue Version §everfügbar!");
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT §7> §eLade dir die Version §4"+current+" §ehier herunter:");
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT §7> §3"+download);
+                }else{
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT §7> §eAdvancedTTT(§4"+current+"§e) aktuell! Keine Updates verfügbar.");
+                }
+            }
+        });
+
         this.getApi().getEventManager().register(new MessageReceiveEvent() {
             @Override
             public boolean onReceive(String s, String message) {
