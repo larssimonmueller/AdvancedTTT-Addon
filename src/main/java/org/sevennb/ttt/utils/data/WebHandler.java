@@ -1,20 +1,11 @@
 package org.sevennb.ttt.utils.data;
 
-import net.labymod.main.LabyMod;
-import org.sevennb.ttt.TTTAddon;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class WebHandler {
-
-    public static void send(String role){
-        if(TTTAddon.DATA){
-            read("https://7nb.org/mod/index.php?id="+ LabyMod.getInstance().getPlayerUUID().toString() +"&role="+role);
-        }
-    }
 
     public static String read(String url){
         StringBuilder response=new StringBuilder();

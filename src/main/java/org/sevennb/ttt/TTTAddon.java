@@ -27,7 +27,6 @@ public class TTTAddon extends LabyModAddon {
 
     public static boolean STATUS;
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
-    public static boolean DATA;
     public static boolean NAMETAGS;
 
     public static final double VERSION = 1.4;
@@ -48,7 +47,6 @@ public class TTTAddon extends LabyModAddon {
                 }else{
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §4Version: "+current+" §eKeine Updates verfügbar.");
                 }
-                LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDeine OnlineStats: §3https://7nb.org/mod/stats.php?uuid="+LabyMod.getInstance().getPlayerUUID().toString());
             }
         });
 
@@ -111,13 +109,11 @@ public class TTTAddon extends LabyModAddon {
     public void loadConfig() {
         this.STATUS = getConfig().has( "active" ) ? getConfig().get( "active" ).getAsBoolean() : true;
         this.NAMETAGS = getConfig().has( "nametags" ) ? getConfig().get( "nametags" ).getAsBoolean() : true;
-        this.DATA = getConfig().has( "onlinestats" ) ? getConfig().get( "onlinestats" ).getAsBoolean() : true;
     }
 
     @Override
     protected void fillSettings(List<SettingsElement> subSettings) {
         subSettings.add( new BooleanElement( "Aktiv", this, new ControlElement.IconData( Material.LEVER ), "active", this.STATUS ) );
         subSettings.add( new BooleanElement( "NameTags", this, new ControlElement.IconData( Material.LEVER ), "nametags", this.NAMETAGS ) );
-        subSettings.add( new BooleanElement( "Online Stats", this, new ControlElement.IconData( Material.LEVER ), "onlinestats", this.DATA ) );
     }
 }

@@ -30,15 +30,12 @@ public class MessageUtils {
 
                 if(message.contains("Du bist ein Innocent")){
                     RolleModule.rolle = "§aInnocent";
-                    WebHandler.send("Innocent");
                 }
                 if(message.contains("Du bist ein Traitor")){
                     RolleModule.rolle = "§4Traitor";
-                    WebHandler.send("Traitor");
                 }
                 if(message.contains("Du bist ein Detective")){
                     RolleModule.rolle = "§9Detective";
-                    WebHandler.send("Detective");
                 }
 
                 if(message.contains("Die Traitor haben alle Innocents eliminiert")){
