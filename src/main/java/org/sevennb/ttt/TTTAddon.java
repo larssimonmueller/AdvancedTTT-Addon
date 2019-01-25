@@ -30,7 +30,7 @@ public class TTTAddon extends LabyModAddon {
     public static boolean DATA;
     public static boolean NAMETAGS;
 
-    public static final double VERSION = 1.3;
+    public static final double VERSION = 1.4;
 
     @Override
     public void onEnable() {
@@ -41,12 +41,14 @@ public class TTTAddon extends LabyModAddon {
                 double current = Double.parseDouble(WebHandler.read("https://7nb.org/mod/version.txt"));
                 String download = "https://7nb.org/mod/"+current;
                 if(VERSION != current){
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT §7> §eEs ist eine §4neue Version §everfügbar!");
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT §7> §eLade dir die Version §4"+current+" §ehier herunter:");
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT §7> §3"+download);
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eEs ist eine §4neue Version §everfügbar!");
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDu nutzt die Version: §4"+VERSION+"§e!");
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eLade dir die Version §4"+current+" §ehier herunter:");
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §3"+download);
                 }else{
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT §7> §eAdvancedTTT(§4"+current+"§e) aktuell! Keine Updates verfügbar.");
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §4Version: "+current+" §eKeine Updates verfügbar.");
                 }
+                LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDeine OnlineStats: §3ehttps://7nb.org/mod/stats.php?uuid="+LabyMod.getInstance().getPlayerUUID().toString());
             }
         });
 

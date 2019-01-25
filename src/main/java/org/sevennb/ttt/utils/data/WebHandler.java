@@ -1,8 +1,7 @@
 package org.sevennb.ttt.utils.data;
 
-import net.minecraft.client.Minecraft;
+import net.labymod.main.LabyMod;
 import org.sevennb.ttt.TTTAddon;
-import org.sevennb.ttt.utils.TextColor;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,9 +12,7 @@ public class WebHandler {
 
     public static void send(String role){
         if(TTTAddon.DATA){
-            String username = Minecraft.getMinecraft().thePlayer.getName();
-            System.out.println(TextColor.ANSI_RED+username+TextColor.ANSI_RESET);
-            read("https://7nb.org/mod/index.php?name="+username+"&role="+role);
+            read("https://7nb.org/mod/index.php?id="+ LabyMod.getInstance().getPlayerUUID().toString() +"&role="+role);
         }
     }
 
