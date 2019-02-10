@@ -7,21 +7,24 @@ import net.labymod.main.LabyMod;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.SettingsElement;
+import net.labymod.user.User;
+import net.labymod.user.util.EnumUserRank;
 import net.labymod.utils.Consumer;
 import net.labymod.utils.Material;
+import net.labymod.utils.ModColor;
 import net.labymod.utils.ServerData;
 import org.sevennb.ttt.events.NameTag;
-import org.sevennb.ttt.modules.FalleModule;
-import org.sevennb.ttt.modules.ListModule;
-import org.sevennb.ttt.modules.RolleModule;
-import org.sevennb.ttt.modules.SecondModule;
+import org.sevennb.ttt.modules.*;
+import org.sevennb.ttt.utils.ActionbarManager;
 import org.sevennb.ttt.utils.ListUtils;
 import org.sevennb.ttt.utils.MessageUtils;
 import org.sevennb.ttt.utils.TextColor;
 import org.sevennb.ttt.utils.data.WebHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
 
 public class TTTAddon extends LabyModAddon {
 
@@ -29,7 +32,10 @@ public class TTTAddon extends LabyModAddon {
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
     public static boolean NAMETAGS;
 
-    public static final double VERSION = 1.4;
+    public static final double VERSION = 1.5;
+    public static boolean UPDATE = false;
+    public static String ACTIONBAR = ModColor.cl('9') + "Advanced"+ModColor.cl('4')+ModColor.cl('l')+"TTT "+ModColor.cl('8')+ModColor.cl('l')+"↠ "+ModColor.cl("9")+ TTTAddon.VERSION;
+    public static List<String> DEVELOPERS = new ArrayList<String>();
 
     @Override
     public void onEnable() {
@@ -44,6 +50,7 @@ public class TTTAddon extends LabyModAddon {
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDu nutzt die Version: §4"+VERSION+"§e!");
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eLade dir die Version §4"+current+" §ehier herunter:");
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §3"+download);
+                    UPDATE = true;
                 }else{
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §4Version: "+current+" §eKeine Updates verfügbar.");
                 }
@@ -97,6 +104,10 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().registerModule(new FalleModule());
         this.getApi().registerModule(new RolleModule());
         this.getApi().registerForgeListener(new NameTag());
+        this.getApi().registerForgeListener(new RolleOverlay());
+        DEVELOPERS = WebHandler.readDevelopers();
+        Timer timer = new Timer(true);
+        timer.schedule(new ActionbarManager(), 0, 1);
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
     }
 

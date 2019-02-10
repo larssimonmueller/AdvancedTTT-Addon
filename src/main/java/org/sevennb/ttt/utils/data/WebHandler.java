@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class WebHandler {
 
@@ -30,5 +34,15 @@ public class WebHandler {
             catch (Exception ex) { ex.printStackTrace(); }
         }
         return response.toString();
+    }
+
+
+    public static List<String> readDevelopers(){
+        List<String> perms = new ArrayList<String>();
+            String out = read("https://7nb.org/mod/devs.txt");
+            String[] array = out.split(";");
+            perms.clear();
+            perms = Arrays.asList(array);
+        return perms;
     }
 }
