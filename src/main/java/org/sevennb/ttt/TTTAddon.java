@@ -15,10 +15,7 @@ import net.labymod.utils.ModColor;
 import net.labymod.utils.ServerData;
 import org.sevennb.ttt.events.NameTag;
 import org.sevennb.ttt.modules.*;
-import org.sevennb.ttt.utils.ActionbarManager;
-import org.sevennb.ttt.utils.ListUtils;
-import org.sevennb.ttt.utils.MessageUtils;
-import org.sevennb.ttt.utils.TextColor;
+import org.sevennb.ttt.utils.*;
 import org.sevennb.ttt.utils.data.WebHandler;
 
 import java.util.ArrayList;
@@ -31,11 +28,14 @@ public class TTTAddon extends LabyModAddon {
     public static boolean STATUS;
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
     public static boolean NAMETAGS;
+    public static boolean TRAITORAMOUNT;
+    public static boolean ACTION;
 
-    public static final double VERSION = 1.5;
+    public static final double VERSION = 1.6;
     public static boolean UPDATE = false;
     public static String ACTIONBAR = ModColor.cl('9') + "Advanced"+ModColor.cl('4')+ModColor.cl('l')+"TTT "+ModColor.cl('8')+ModColor.cl('l')+"↠ "+ModColor.cl("9")+ TTTAddon.VERSION;
     public static List<String> DEVELOPERS = new ArrayList<String>();
+    public static double current;
 
     @Override
     public void onEnable() {
@@ -43,7 +43,7 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().getEventManager().registerOnJoin(new Consumer<ServerData>() {
             @Override
             public void accept(ServerData serverData) {
-                double current = Double.parseDouble(WebHandler.read("https://7nb.org/mod/version.txt"));
+                current = Double.parseDouble(WebHandler.read("https://7nb.org/mod/version.txt"));
                 String download = "https://7nb.org/mod/"+current;
                 if(VERSION != current){
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eEs ist eine §4neue Version §everfügbar!");
@@ -53,6 +53,9 @@ public class TTTAddon extends LabyModAddon {
                     UPDATE = true;
                 }else{
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §4Version: "+current+" §eKeine Updates verfügbar.");
+                }
+                if(DEVELOPERS.contains(LabyMod.getInstance().getPlayerName())){
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDu bist ein §4Administrator§e!");
                 }
             }
         });
@@ -103,11 +106,13 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().registerModule(new SecondModule());
         this.getApi().registerModule(new FalleModule());
         this.getApi().registerModule(new RolleModule());
+        this.getApi().registerModule(new TraitorAmountModule());
         this.getApi().registerForgeListener(new NameTag());
         this.getApi().registerForgeListener(new RolleOverlay());
-        DEVELOPERS = WebHandler.readDevelopers();
-        Timer timer = new Timer(true);
-        timer.schedule(new ActionbarManager(), 0, 1);
+        Timer actionbartimer = new Timer();
+        actionbartimer.schedule(new ActionbarManager(), 0, 1);
+        Timer teamupdater = new Timer();
+        teamupdater.schedule(new TeamMember(), 0, 1000*60);
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
     }
 
@@ -120,11 +125,15 @@ public class TTTAddon extends LabyModAddon {
     public void loadConfig() {
         this.STATUS = getConfig().has( "active" ) ? getConfig().get( "active" ).getAsBoolean() : true;
         this.NAMETAGS = getConfig().has( "nametags" ) ? getConfig().get( "nametags" ).getAsBoolean() : true;
+        this.TRAITORAMOUNT = getConfig().has( "traitoramount" ) ? getConfig().get( "traitoramount" ).getAsBoolean() : true;
+        this.ACTION = getConfig().has( "action" ) ? getConfig().get( "action" ).getAsBoolean() : true;
     }
 
     @Override
     protected void fillSettings(List<SettingsElement> subSettings) {
         subSettings.add( new BooleanElement( "Aktiv", this, new ControlElement.IconData( Material.LEVER ), "active", this.STATUS ) );
         subSettings.add( new BooleanElement( "NameTags", this, new ControlElement.IconData( Material.LEVER ), "nametags", this.NAMETAGS ) );
+        subSettings.add( new BooleanElement( "Traitoranzahl", this, new ControlElement.IconData( Material.LEVER ), "traitoramount", this.NAMETAGS ) );
+        subSettings.add( new BooleanElement( "Actionbar", this, new ControlElement.IconData( Material.LEVER ), "action", this.NAMETAGS ) );
     }
 }
