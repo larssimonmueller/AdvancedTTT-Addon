@@ -3,8 +3,10 @@
 Entwickelt von 5TC. Ein Projekt von [7nb Development](https://7nb.org).
 Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Haftung.
 
+
 ## Vorraussetzungen
 - LabyMod für **Forge** (für die Minecraftversion 1.8.9)
+
 
 ## Installation
 1. Lade dir die Modifikation [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) herunter.
@@ -16,10 +18,6 @@ Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Ha
 7. Aktiviere **alles** was mit module_ anfängt.
 8. Du bist fertig!
 
-## Statistiken
-Die Modifikation sammelt Daten und sendet diese an unseren Server zur Errechnung der Wahrscheinlichkeit der verschiedenen Rollen.
-Deine Statistiken kannst du [hier](https://7nb.org/mod) einsehen.
-Du kannst diese Funktion in den Addon-Einstellungen deaktivieren.
 
 ## Download
 Klicke [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) zum herunterladen.
