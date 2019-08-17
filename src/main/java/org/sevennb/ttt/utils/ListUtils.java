@@ -47,9 +47,9 @@ public class ListUtils {
                 int lvl = TTTAddon.testlevel.get(playername);
                 if(tests.size() != 0){
                     if(lvl == 1){
-                        return "§8- §a"+lvl;
+                        return " §8- §a"+lvl+" §8- §eTEST";
                     }else if(lvl > 1){
-                        return "§8- §2"+lvl;
+                        return " §8- §2"+lvl+" §8- §cTEST";
                     }
                 }
             }

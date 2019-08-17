@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.sevennb.ttt.TTTAddon;
 import org.sevennb.ttt.utils.ListUtils;
 
+
 public class NameTag {
 
     @SubscribeEvent
@@ -18,7 +19,7 @@ public class NameTag {
     public void modifyName(PlayerEvent.NameFormat event)
     {
         if(TTTAddon.DEVELOPERS.contains(event.username)){
-            event.displayname = "§3Advanced§4§lTTT §8| §4"+event.username + ListUtils.getRole(event.username);
+            event.displayname = event.username + ListUtils.getRole(event.username)+" §f(§cA-TTT§f)";
         }else{
             event.displayname = event.username + ListUtils.getRole(event.username);
         }

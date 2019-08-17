@@ -6,13 +6,13 @@ import net.labymod.api.events.MessageSendEvent;
 import net.labymod.main.LabyMod;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement;
+import net.labymod.settings.elements.KeyElement;
 import net.labymod.settings.elements.SettingsElement;
-import net.labymod.user.User;
-import net.labymod.user.util.EnumUserRank;
 import net.labymod.utils.Consumer;
 import net.labymod.utils.Material;
 import net.labymod.utils.ModColor;
 import net.labymod.utils.ServerData;
+import org.lwjgl.input.Keyboard;
 import org.sevennb.ttt.events.NameTag;
 import org.sevennb.ttt.modules.*;
 import org.sevennb.ttt.utils.*;
@@ -28,31 +28,29 @@ public class TTTAddon extends LabyModAddon {
     public static boolean STATUS;
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
     public static boolean NAMETAGS;
-    public static boolean TRAITORAMOUNT;
     public static boolean ACTION;
-
-    public static final double VERSION = 1.6;
+    public static final double VERSION = 1.7;
     public static boolean UPDATE = false;
     public static String ACTIONBAR = ModColor.cl('9') + "Advanced"+ModColor.cl('4')+ModColor.cl('l')+"TTT "+ModColor.cl('8')+ModColor.cl('l')+"↠ "+ModColor.cl("9")+ TTTAddon.VERSION;
     public static List<String> DEVELOPERS = new ArrayList<String>();
-    public static double current;
+    public static double CURRENT;
+    public static String LASTKILL = "";
 
     @Override
     public void onEnable() {
-
         this.getApi().getEventManager().registerOnJoin(new Consumer<ServerData>() {
             @Override
             public void accept(ServerData serverData) {
-                current = Double.parseDouble(WebHandler.read("https://7nb.org/mod/version.txt"));
-                String download = "https://7nb.org/mod/"+current;
-                if(VERSION != current){
+                CURRENT = Double.parseDouble(WebHandler.read("https://7nb.org/mod/version.txt"));
+                String download = "https://7nb.org/mod/"+ CURRENT;
+                if(VERSION != CURRENT){
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eEs ist eine §4neue Version §everfügbar!");
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDu nutzt die Version: §4"+VERSION+"§e!");
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eLade dir die Version §4"+current+" §ehier herunter:");
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eLade dir die Version §4"+ CURRENT +" §ehier herunter:");
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §3"+download);
                     UPDATE = true;
                 }else{
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §4Version: "+current+" §eKeine Updates verfügbar.");
+                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §4Version: "+ CURRENT +" §eKeine Updates verfügbar.");
                 }
                 if(DEVELOPERS.contains(LabyMod.getInstance().getPlayerName())){
                     LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDu bist ein §4Administrator§e!");
@@ -106,7 +104,6 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().registerModule(new SecondModule());
         this.getApi().registerModule(new FalleModule());
         this.getApi().registerModule(new RolleModule());
-        this.getApi().registerModule(new TraitorAmountModule());
         this.getApi().registerForgeListener(new NameTag());
         this.getApi().registerForgeListener(new RolleOverlay());
         Timer actionbartimer = new Timer();
@@ -125,7 +122,6 @@ public class TTTAddon extends LabyModAddon {
     public void loadConfig() {
         this.STATUS = getConfig().has( "active" ) ? getConfig().get( "active" ).getAsBoolean() : true;
         this.NAMETAGS = getConfig().has( "nametags" ) ? getConfig().get( "nametags" ).getAsBoolean() : true;
-        this.TRAITORAMOUNT = getConfig().has( "traitoramount" ) ? getConfig().get( "traitoramount" ).getAsBoolean() : true;
         this.ACTION = getConfig().has( "action" ) ? getConfig().get( "action" ).getAsBoolean() : true;
     }
 
@@ -133,7 +129,6 @@ public class TTTAddon extends LabyModAddon {
     protected void fillSettings(List<SettingsElement> subSettings) {
         subSettings.add( new BooleanElement( "Aktiv", this, new ControlElement.IconData( Material.LEVER ), "active", this.STATUS ) );
         subSettings.add( new BooleanElement( "NameTags", this, new ControlElement.IconData( Material.LEVER ), "nametags", this.NAMETAGS ) );
-        subSettings.add( new BooleanElement( "Traitoranzahl", this, new ControlElement.IconData( Material.LEVER ), "traitoramount", this.NAMETAGS ) );
         subSettings.add( new BooleanElement( "Actionbar", this, new ControlElement.IconData( Material.LEVER ), "action", this.NAMETAGS ) );
     }
 }

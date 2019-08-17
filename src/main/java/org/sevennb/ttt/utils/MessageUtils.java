@@ -1,9 +1,10 @@
 package org.sevennb.ttt.utils;
 
+import net.labymod.main.LabyMod;
+import net.minecraft.client.Minecraft;
 import org.sevennb.ttt.TTTAddon;
 import org.sevennb.ttt.modules.FalleModule;
 import org.sevennb.ttt.modules.RolleModule;
-import org.sevennb.ttt.utils.data.WebHandler;
 
 public class MessageUtils {
 
@@ -18,6 +19,10 @@ public class MessageUtils {
                         TTTAddon.testlevel.clear();
                         ListUtils.tests.clear();
                         RolleModule.rolle = "-";
+                        TTTAddon.LASTKILL = args[4];
+                        if(TTTAddon.DEVELOPERS.contains(LabyMod.getInstance().getPlayerName())) {
+                            LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eLatest-Killer: §c" + TTTAddon.LASTKILL);
+                        }
                     }
                 }
 
@@ -26,6 +31,7 @@ public class MessageUtils {
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
                     RolleModule.rolle = "-";
+                    TTTAddon.LASTKILL = "";
                 }
 
                 if(message.contains("Du bist ein Innocent")){
@@ -43,6 +49,7 @@ public class MessageUtils {
                     TTTAddon.testlevel.clear();
                     ListUtils.tests.clear();
                     RolleModule.rolle = "-";
+                    TTTAddon.LASTKILL = "";
                 }
 
                 if(message.contains("Die Innocents haben den Anschlag der Terroristen überlebt")){
@@ -88,6 +95,15 @@ public class MessageUtils {
             TTTAddon.testlevel.clear();
             ListUtils.tests.clear();
             RolleModule.rolle = "-";
+            TTTAddon.LASTKILL = "";
+            return true;
+        }else if(message.startsWith("-r")){
+            if(TTTAddon.LASTKILL != ""){
+                Minecraft.getMinecraft().thePlayer.sendChatMessage("/report "+TTTAddon.LASTKILL+" randomkilling confirm");
+                TTTAddon.LASTKILL = "";
+            }else{
+                LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §3Du wurdest in letzter Zeit von keinem Spieler getötet!");
+            }
             return true;
         }
         return false;
