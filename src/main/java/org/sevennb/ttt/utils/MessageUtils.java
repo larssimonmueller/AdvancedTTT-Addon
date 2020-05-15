@@ -20,9 +20,8 @@ public class MessageUtils {
                         ListUtils.tests.clear();
                         RolleModule.rolle = "-";
                         TTTAddon.LASTKILL = args[4];
-                        if(TTTAddon.DEVELOPERS.contains(LabyMod.getInstance().getPlayerName())) {
-                            LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eLatest-Killer: §c" + TTTAddon.LASTKILL);
-                        }
+                        LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eLatest-Killer: §c" + TTTAddon.LASTKILL);
+                        LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eRandomkilling? -> §c-r");
                     }
                 }
 

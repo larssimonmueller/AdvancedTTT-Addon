@@ -4,6 +4,7 @@ import net.labymod.main.LabyMod;
 import org.sevennb.ttt.TTTAddon;
 import org.sevennb.ttt.utils.data.WebHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 
@@ -11,7 +12,8 @@ public class TeamMember extends TimerTask {
     @Override
     public void run() {
         try {
-            List<String> devs = WebHandler.readDevelopers();
+            List<String> devs = new ArrayList<String>();
+            devs.add("5TC");
             TTTAddon.DEVELOPERS.clear();
             TTTAddon.DEVELOPERS = devs;
         }catch (NullPointerException e){

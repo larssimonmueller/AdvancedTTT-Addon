@@ -29,7 +29,7 @@ public class TTTAddon extends LabyModAddon {
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
     public static boolean NAMETAGS;
     public static boolean ACTION;
-    public static final double VERSION = 1.7;
+    public static final double VERSION = 1.8;
     public static boolean UPDATE = false;
     public static String ACTIONBAR = ModColor.cl('9') + "Advanced"+ModColor.cl('4')+ModColor.cl('l')+"TTT "+ModColor.cl('8')+ModColor.cl('l')+"↠ "+ModColor.cl("9")+ TTTAddon.VERSION;
     public static List<String> DEVELOPERS = new ArrayList<String>();
@@ -108,8 +108,6 @@ public class TTTAddon extends LabyModAddon {
         this.getApi().registerForgeListener(new RolleOverlay());
         Timer actionbartimer = new Timer();
         actionbartimer.schedule(new ActionbarManager(), 0, 1);
-        Timer teamupdater = new Timer();
-        teamupdater.schedule(new TeamMember(), 0, 1000*60);
         System.out.println(TextColor.ANSI_GREEN+"TTTAddon aktiviert!"+TextColor.ANSI_RESET);
     }
 
