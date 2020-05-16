@@ -32,3 +32,10 @@ Klicke [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) zum he
 
 - "-c" -> Resette deine GUI
 - "-r" -> Reporte den letzten Killer für Randomkilling
+
+
+
+## Webpanel
+
+Ab Version 1.8 hast du die Möglichkeit, die Tests auch in einem Live-Panel anzeigen zulassen.
+Wenn dein Minecraft gestartet ist, gehe einfach auf die Seite [localhost:8775](http://localhost:8775).
