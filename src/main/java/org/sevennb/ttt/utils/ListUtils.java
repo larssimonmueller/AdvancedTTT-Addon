@@ -1,6 +1,7 @@
 package org.sevennb.ttt.utils;
 
 import org.sevennb.ttt.TTTAddon;
+import org.sevennb.ttt.panel.FileManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,8 @@ public class ListUtils {
             if (output == ""){
                 return "-";
             }
-            return output.substring(0, output.length()-1);
+            FileManager.write("list1.atp", output);
+            return output.substring(0, output.length()-2);
         }else if(testLevel == TestLevel.TWO){
             for(String out : tests){
                 String playername = out;
@@ -36,6 +38,7 @@ public class ListUtils {
             if (output == ""){
                 return "-";
             }
+            FileManager.write("list2.atp", output);
             return output.substring(0, output.length()-2);
         }
         return "Keine";

@@ -15,9 +15,8 @@ Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Ha
 4. Ziehe die .jar Datei in den Ordner.
 5. Starte dein Spiel neu.
 6. Gehe auf Optionen > LabyMod Settings > Ingame Benutzeroberfläche > Miscellaneous
-7. Aktiviere **alles** was mit module_ anfängt.
+7. Aktiviere alles was mit module_ anfängt.
 8. Du bist fertig!
-
 
 ## Download
 Klicke [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) zum herunterladen.
@@ -26,3 +25,10 @@ Klicke [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) zum he
 ## Bugs
 
 - Sollte die GUI nicht zurückgesetzt werden, schreibe in den Chat "-c". Bei beginn jeder TTT Runde setzt sich die GUI automatisch zurück.
+
+
+
+## Befehle
+
+- "-c" -> Resette deine GUI
+- "-r" -> Reporte den letzten Killer für Randomkilling

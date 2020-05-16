@@ -1,9 +1,9 @@
 package org.sevennb.ttt;
 
+import com.sun.net.httpserver.HttpServer;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.events.MessageReceiveEvent;
 import net.labymod.api.events.MessageSendEvent;
-import net.labymod.main.LabyMod;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.SettingsElement;
@@ -13,11 +13,14 @@ import net.labymod.utils.ModColor;
 import net.labymod.utils.ServerData;
 import org.sevennb.ttt.events.NameTag;
 import org.sevennb.ttt.modules.*;
+import org.sevennb.ttt.panel.Handler;
 import org.sevennb.ttt.utils.ActionbarManager;
 import org.sevennb.ttt.utils.ListUtils;
 import org.sevennb.ttt.utils.MessageUtils;
 import org.sevennb.ttt.utils.TextColor;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,10 +38,20 @@ public class TTTAddon extends LabyModAddon {
     public static List<String> DEVELOPERS = new ArrayList<String>();
     public static double CURRENT;
     public static String LASTKILL = "";
+    public static HttpServer server;
 
     @Override
     public void onEnable() {
-
+        try {
+            int port = 8775;
+            server = HttpServer.create(new InetSocketAddress(port), 0);
+            System.out.println("Server gestartet! Port: " + port);
+            server.createContext("/", new Handler());
+            server.setExecutor(null);
+            server.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         this.getApi().getEventManager().register(new MessageReceiveEvent() {
             @Override
             public boolean onReceive(String s, String message) {
@@ -47,17 +60,6 @@ public class TTTAddon extends LabyModAddon {
                         if(message.contains("Die Traitor-Falle wurde ausgelöst")){
                             FalleModule.falle = "§4§lJa";
                             return false;
-                        }
-                        String[] words = message.split(" ");
-                        for(String word : words){
-                            for(String name : ListUtils.tests){
-                                String namechat = name+":";
-                                if(word.equalsIgnoreCase(name) || word.equalsIgnoreCase(namechat)){
-                                    message = message.replaceAll(name, name+" §8(§e"+TTTAddon.testlevel.get(name)+"§8)");
-                                    LabyMod.getInstance().displayMessageInChat(message);
-                                    return true;
-                                }
-                            }
                         }
                         MessageUtils.execute(message, s);
                     }catch (Exception e){System.out.println(TextColor.ANSI_RED+e+TextColor.ANSI_RESET);}
@@ -105,6 +107,7 @@ public class TTTAddon extends LabyModAddon {
 
     @Override
     public void onDisable() {
+        server.stop(0);
         System.out.println(TextColor.ANSI_RED+"TTTAddon deaktiviert!"+TextColor.ANSI_RESET);
     }
 
