@@ -6,5 +6,5 @@
   "description": "TTT Addon - GommeHD.net - Achtung: Verboten! Wir uebernehmen keine Haftung!",
   "version": 1.7,
   "category": 2,
-  "icon": "https://7nb.org/ttt-mod-icon.png"
+  "icon": "localhost:8775/logo"
 }

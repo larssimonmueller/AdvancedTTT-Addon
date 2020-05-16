@@ -3,47 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>ATP</title>
+    <meta http-equiv="refresh" content="1";>
+    <style>
+        body {
+            background-color: #1C1A2D;
+            color: #fff;
+            font-size: 40px;
+        }
+        .content {
+            padding-top: 3%;
+            padding-left: 3%;
+            font-family: "Segoe UI", sans-serif;
+        }
+        h1 {
+            padding-left: 10px;
+            font-family: Impact, sans-serif;
+        }
+        strong{
+            font-family: Impact, sans-serif;
+        }
+    </style>
 </head>
 <body>
 <h1>ATP 1.0</h1>
-<h3>Test ONE: <strong id="listone"></strong></h3>
-<h3>Test TWO: <strong id="listtwo"></strong></h3>
+<div class="content">
+    <h3><strong>Testlevel 1:</strong> </h3><br>
+    <h3><strong>Testlevel 2:</strong> </h3>
+</div>
 </body>
 </html>
-<script>
-    var instance = setInterval(update, 1000)
-
-    function update() {
-        //Test Level 1
-        var rawFile = new XMLHttpRequest();
-        rawFile.open("GET", "list1.atp", false);
-        rawFile.onreadystatechange = function ()
-        {
-            if(rawFile.readyState === 4)
-            {
-                if(rawFile.status === 200 || rawFile.status == 0)
-                {
-                    var allText = rawFile.responseText;
-                    $('#listone').text(allText);
-                }
-            }
-        }
-        rawFile.send(null);
-
-        //Test Level 2
-        rawFile = new XMLHttpRequest();
-        rawFile.open("GET", "list2.atp", false);
-        rawFile.onreadystatechange = function ()
-        {
-            if(rawFile.readyState === 4)
-            {
-                if(rawFile.status === 200 || rawFile.status == 0)
-                {
-                    allText = rawFile.responseText;
-                    $('#listtwo').text(allText);
-                }
-            }
-        }
-        rawFile.send(null);
-    }
-</script>
