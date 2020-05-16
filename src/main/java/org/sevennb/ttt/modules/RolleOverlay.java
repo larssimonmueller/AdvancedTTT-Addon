@@ -11,7 +11,7 @@ public class RolleOverlay {
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent e){
         DrawUtils draw = LabyMod.getInstance().getDrawUtils();
-        draw.drawCenteredString(TTTAddon.ACTIONBAR, draw.getWidth() + 10, draw.getHeight() - 10);
+        draw.drawCenteredString(TTTAddon.ACTIONBAR, draw.getWidth() - 52, draw.getHeight() - 10);
     }
 
 }
