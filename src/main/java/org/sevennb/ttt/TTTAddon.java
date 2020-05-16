@@ -6,17 +6,17 @@ import net.labymod.api.events.MessageSendEvent;
 import net.labymod.main.LabyMod;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement;
-import net.labymod.settings.elements.KeyElement;
 import net.labymod.settings.elements.SettingsElement;
 import net.labymod.utils.Consumer;
 import net.labymod.utils.Material;
 import net.labymod.utils.ModColor;
 import net.labymod.utils.ServerData;
-import org.lwjgl.input.Keyboard;
 import org.sevennb.ttt.events.NameTag;
 import org.sevennb.ttt.modules.*;
-import org.sevennb.ttt.utils.*;
-import org.sevennb.ttt.utils.data.WebHandler;
+import org.sevennb.ttt.utils.ActionbarManager;
+import org.sevennb.ttt.utils.ListUtils;
+import org.sevennb.ttt.utils.MessageUtils;
+import org.sevennb.ttt.utils.TextColor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,25 +38,6 @@ public class TTTAddon extends LabyModAddon {
 
     @Override
     public void onEnable() {
-        this.getApi().getEventManager().registerOnJoin(new Consumer<ServerData>() {
-            @Override
-            public void accept(ServerData serverData) {
-                CURRENT = Double.parseDouble(WebHandler.read("https://7nb.org/mod/version.txt"));
-                String download = "https://7nb.org/mod/"+ CURRENT;
-                if(VERSION != CURRENT){
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eEs ist eine §4neue Version §everfügbar!");
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDu nutzt die Version: §4"+VERSION+"§e!");
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eLade dir die Version §4"+ CURRENT +" §ehier herunter:");
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §3"+download);
-                    UPDATE = true;
-                }else{
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §4Version: "+ CURRENT +" §eKeine Updates verfügbar.");
-                }
-                if(DEVELOPERS.contains(LabyMod.getInstance().getPlayerName())){
-                    LabyMod.getInstance().displayMessageInChat("§3Advanced§4§lTTT§7> §eDu bist ein §4Administrator§e!");
-                }
-            }
-        });
 
         this.getApi().getEventManager().register(new MessageReceiveEvent() {
             @Override
@@ -67,7 +48,18 @@ public class TTTAddon extends LabyModAddon {
                             FalleModule.falle = "§4§lJa";
                             return false;
                         }
-                        MessageUtils.execute(message);
+                        String[] words = message.split(" ");
+                        for(String word : words){
+                            for(String name : ListUtils.tests){
+                                String namechat = name+":";
+                                if(word.equalsIgnoreCase(name) || word.equalsIgnoreCase(namechat)){
+                                    message = message.replaceAll(name, name+" §8(§e"+TTTAddon.testlevel.get(name)+"§8)");
+                                    LabyMod.getInstance().displayMessageInChat(message);
+                                    return true;
+                                }
+                            }
+                        }
+                        MessageUtils.execute(message, s);
                     }catch (Exception e){System.out.println(TextColor.ANSI_RED+e+TextColor.ANSI_RESET);}
                 }else{
                     System.out.println("Message ist null!");

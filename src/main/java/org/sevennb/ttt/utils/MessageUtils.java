@@ -8,8 +8,9 @@ import org.sevennb.ttt.modules.RolleModule;
 
 public class MessageUtils {
 
-    public static boolean execute(String message){
+    public static boolean execute(String message, String raw){
         if(TTTAddon.STATUS){
+            String[] argsorigin = raw.split(" ");
             String[] args = message.split(" ");
                 String detectMessage = "";
 

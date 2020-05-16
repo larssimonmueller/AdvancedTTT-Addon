@@ -24,7 +24,7 @@ public class ListUtils {
             if (output == ""){
                 return "-";
             }
-            return output;
+            return output.substring(0, output.length()-1);
         }else if(testLevel == TestLevel.TWO){
             for(String out : tests){
                 String playername = out;
@@ -36,7 +36,7 @@ public class ListUtils {
             if (output == ""){
                 return "-";
             }
-            return output;
+            return output.substring(0, output.length()-2);
         }
         return "Keine";
     }
