@@ -122,6 +122,6 @@ public class TTTAddon extends LabyModAddon {
     protected void fillSettings(List<SettingsElement> subSettings) {
         subSettings.add( new BooleanElement( "Aktiv", this, new ControlElement.IconData( Material.LEVER ), "active", this.STATUS ) );
         subSettings.add( new BooleanElement( "NameTags", this, new ControlElement.IconData( Material.LEVER ), "nametags", this.NAMETAGS ) );
-        subSettings.add( new BooleanElement( "Actionbar", this, new ControlElement.IconData( Material.LEVER ), "action", this.NAMETAGS ) );
+        subSettings.add( new BooleanElement( "Info", this, new ControlElement.IconData( Material.LEVER ), "action", this.NAMETAGS ) );
     }
 }
