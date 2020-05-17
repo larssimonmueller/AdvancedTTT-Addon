@@ -51,6 +51,9 @@ public class TTTAddon extends LabyModAddon {
             server.createContext("/localstyle", new LocalStyleHandler());
             server.createContext("/bootstrap", new BootstrapHandler());
             server.createContext("/jquery", new JQueryHandler());
+            server.createContext("/roleicon", new RolleIconHandler());
+            server.createContext("/testsicon", new TestsIconHandler());
+            server.createContext("/trapicon", new TrapIconHandler());
             server.createContext("/falle", new FalleHandler());
             server.createContext("/rolle", new RolleHandler());
             server.createContext("/one", new TestOneHandler());
