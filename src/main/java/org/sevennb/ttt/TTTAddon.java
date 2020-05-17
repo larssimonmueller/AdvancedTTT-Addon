@@ -14,6 +14,7 @@ import net.labymod.utils.ServerData;
 import org.sevennb.ttt.events.NameTag;
 import org.sevennb.ttt.modules.*;
 import org.sevennb.ttt.panel.Handler;
+import org.sevennb.ttt.panel.LogoHandler;
 import org.sevennb.ttt.utils.ActionbarManager;
 import org.sevennb.ttt.utils.ListUtils;
 import org.sevennb.ttt.utils.MessageUtils;
@@ -47,6 +48,7 @@ public class TTTAddon extends LabyModAddon {
             server = HttpServer.create(new InetSocketAddress(port), 0);
             System.out.println("Server gestartet! Port: " + port);
             server.createContext("/", new Handler());
+            server.createContext("/logo", new LogoHandler());
             server.setExecutor(null);
             server.start();
         } catch (IOException e) {

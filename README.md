@@ -10,13 +10,14 @@ Vorab: Diese Modifikation ist auf GommeHD.net verboten! Wir übernehmen keine Ha
 
 ## Installation
 1. Lade dir die Modifikation [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) herunter.
-2. Nutze WIN + R und gebe %appdata% ein.
-3. Gehe in .minecraft > LabyMod > addons-1.8
-4. Ziehe die .jar Datei in den Ordner.
-5. Starte dein Spiel neu.
-6. Gehe auf Optionen > LabyMod Settings > Ingame Benutzeroberfläche > Miscellaneous
-7. Aktiviere alles was mit module_ anfängt.
-8. Du bist fertig!
+2. Entpacke die ZIP-Datei.
+3. Nutze WIN + R und gebe %appdata% ein.
+4. Gehe in .minecraft > LabyMod > addons-1.8
+5. Ziehe die .jar Datei und den AdvancedTTT Ordner in den Ordner.
+6. Starte dein Spiel neu.
+7. Gehe auf Optionen > LabyMod Settings > Ingame Benutzeroberfläche > Miscellaneous
+8. Aktiviere alles was mit module_ anfängt.
+9. Du bist fertig!
 
 ## Download
 Klicke [hier](https://github.com/Gedankenleid/AdvancedTTT-Addon/releases) zum herunterladen.
