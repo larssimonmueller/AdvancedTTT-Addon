@@ -13,10 +13,7 @@ import net.labymod.utils.ModColor;
 import net.labymod.utils.ServerData;
 import org.sevennb.ttt.events.NameTag;
 import org.sevennb.ttt.modules.*;
-import org.sevennb.ttt.panel.BootstrapHandler;
-import org.sevennb.ttt.panel.Handler;
-import org.sevennb.ttt.panel.LocalStyleHandler;
-import org.sevennb.ttt.panel.LogoHandler;
+import org.sevennb.ttt.panel.*;
 import org.sevennb.ttt.utils.ActionbarManager;
 import org.sevennb.ttt.utils.ListUtils;
 import org.sevennb.ttt.utils.MessageUtils;
@@ -53,6 +50,10 @@ public class TTTAddon extends LabyModAddon {
             server.createContext("/logo", new LogoHandler());
             server.createContext("/localstyle", new LocalStyleHandler());
             server.createContext("/bootstrap", new BootstrapHandler());
+            server.createContext("/falle", new FalleHandler());
+            server.createContext("/rolle", new RolleHandler());
+            server.createContext("/one", new TestOneHandler());
+            server.createContext("/two", new TestTwoHandler());
             server.setExecutor(null);
             server.start();
         } catch (IOException e) {
