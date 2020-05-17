@@ -14,7 +14,7 @@ public class RolleHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange he) throws IOException {
-        String response = RolleModule.rolle.replaceAll("§4", "").replaceAll("§a", "").replaceAll("§9", "");
+        String response = "<div>"+RolleModule.rolle.replaceAll("§4", "").replaceAll("§a", "").replaceAll("§9", "")+"</div>";
         he.sendResponseHeaders(200, response.length());
         OutputStream os = he.getResponseBody();
         os.write(response.getBytes());

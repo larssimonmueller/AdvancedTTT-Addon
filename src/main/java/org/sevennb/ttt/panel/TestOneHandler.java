@@ -11,7 +11,7 @@ import java.io.OutputStream;
 public class TestOneHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) throws IOException {
-        String listone = ListUtils.getListAsString(TestLevel.ONE).replaceAll("§a", "").replaceAll("§f", "");
+        String listone = "<div>"+ListUtils.getListAsString(TestLevel.ONE).replaceAll("§a", "").replaceAll("§f", "")+"</div>";
         he.sendResponseHeaders(200, listone.length());
         OutputStream os = he.getResponseBody();
         os.write(listone.getBytes());

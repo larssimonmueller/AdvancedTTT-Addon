@@ -12,7 +12,7 @@ public class TestTwoHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange he) throws IOException {
-        String listtwo = ListUtils.getListAsString(TestLevel.TWO).replaceAll("§2", "").replaceAll("§f", "");
+        String listtwo = "<div>"+ListUtils.getListAsString(TestLevel.TWO).replaceAll("§2", "").replaceAll("§f", "")+"</div>";
         he.sendResponseHeaders(200, listtwo.length());
         OutputStream os = he.getResponseBody();
         os.write(listtwo.getBytes());
