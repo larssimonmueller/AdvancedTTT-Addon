@@ -3,6 +3,7 @@ package org.sevennb.ttt.panel;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.sevennb.ttt.modules.FalleModule;
+import org.sevennb.ttt.modules.RolleModule;
 import org.sevennb.ttt.utils.ListUtils;
 import org.sevennb.ttt.utils.TestLevel;
 
@@ -28,7 +29,8 @@ public class Handler implements HttpHandler {
             while(scanner.hasNext()) {
                 String line = scanner.nextLine();
                 String falle = FalleModule.falle.replaceAll("§a§l", "").replaceAll("§2§l", "").replaceAll("§4§l", "").replaceAll("§c§l", "");
-                line = line.replaceAll("%lo", listone).replaceAll("%lt", listtwo).replaceAll("%falle", falle);
+                String rolle = RolleModule.rolle.replaceAll("§4", "").replaceAll("§a", "").replaceAll("§9", "");
+                line = line.replaceAll("%lo", listone).replaceAll("%lt", listtwo).replaceAll("%falle", falle).replaceAll("%rolle", rolle);
                 response = response+"\n"+line;
             }
             scanner.close();
