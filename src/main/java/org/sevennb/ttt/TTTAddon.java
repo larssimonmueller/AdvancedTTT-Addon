@@ -33,7 +33,7 @@ public class TTTAddon extends LabyModAddon {
     public static HashMap<String, Integer> testlevel = new HashMap<String, Integer>();
     public static boolean NAMETAGS;
     public static boolean ACTION;
-    public static final double VERSION = 1.8;
+    public static final double VERSION = 1.9;
     public static boolean UPDATE = false;
     public static String ACTIONBAR = ModColor.cl('9') + "Advanced"+ModColor.cl('4')+ModColor.cl('l')+"TTT "+ModColor.cl('8')+ModColor.cl('l')+"↠ "+ModColor.cl("9")+ TTTAddon.VERSION;
     public static List<String> DEVELOPERS = new ArrayList<String>();
