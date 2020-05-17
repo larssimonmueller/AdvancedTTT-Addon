@@ -27,7 +27,8 @@ public class Handler implements HttpHandler {
             scanner = new Scanner(new File("LabyMod/addons-1.8/AdvancedTTT/PanelTemplate.php"));
             while(scanner.hasNext()) {
                 String line = scanner.nextLine();
-                line = line.replaceAll("%lo", listone).replaceAll("%lt", listtwo).replaceAll("%falle", FalleModule.falle);
+                String falle = FalleModule.falle.replaceAll("§a§l", "").replaceAll("§2§l", "").replaceAll("§4§l", "").replaceAll("§c§l", "");
+                line = line.replaceAll("%lo", listone).replaceAll("%lt", listtwo).replaceAll("%falle", falle);
                 response = response+"\n"+line;
             }
             scanner.close();
